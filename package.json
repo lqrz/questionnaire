@@ -1,0 +1,25 @@
+{
+  "name": "questionnaire",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/controller/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "l.quiroz",
+  "license": "ISC",
+  "dependencies": {
+    "adler-32": "^1.0.0",
+    "body-parser": "^1.17.0",
+    "express": "^4.15.1",
+    "express-formidable": "^1.0.0",
+    "fs": "0.0.1-security",
+    "nib": "^1.1.2",
+    "nodemailer": "^3.1.4",
+    "parse-database-url": "^0.3.0",
+    "path": "^0.12.7",
+    "pg": "^6.1.4",
+    "stylus": "^0.54.5",
+    "xml2js": "^0.4.17"
+  }
+}

@@ -1,0 +1,31 @@
+html
+	head
+		doctype html
+		title Questionnaire
+
+		// FONT
+		link(href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css")
+
+		script(type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js")
+
+		script(type="text/javascript" src="static/js/items.js")
+		script(type="text/javascript" src="static/js/index.js")
+
+		// CSS
+		link(rel="stylesheet" href="static/css/normalize.css")
+		link(rel="stylesheet" href="static/css/skeleton.css")
+		link(rel="stylesheet" href="static/css/custom.css")
+
+	body
+		#choose_questionnaire
+			.header
+				h1 Choose a questionaire
+
+			.container
+				.content
+					form
+						.row
+							div(class="six columns")
+								label(for="file_chooser") Pick an xml file
+								input(id="file_chooser" name="file_chooser" type="file")
+								input(id="custom_upload_button" class="button" value="Choose file")

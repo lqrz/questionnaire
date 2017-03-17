@@ -1,0 +1,43 @@
+html
+	head
+		doctype html
+		title Questionnaire
+
+		// FONT
+		link(href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css")
+
+		script(type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js")
+
+		script(type="text/javascript" src="static/js/items.js")
+		script(type="text/javascript" src="static/js/index.js")
+
+		// CSS
+		link(rel="stylesheet" href="static/css/normalize.css")
+		link(rel="stylesheet" href="static/css/skeleton.css")
+		link(rel="stylesheet" href="static/css/custom.css")
+
+body
+	#complete_questionnaire
+		.header
+			h1=title
+			h5=description
+
+		.container
+			.content
+				.row
+					div(class="six columns")
+						h5.question
+						.answer
+						input(id="complete_questionnaire_previous" class="button" type="submit" value="Previous")
+						input(id="complete_questionnaire_next" class="button-primary" type="submit" value="Next" disabled)
+						input(id="complete_questionnaire_submit" class="button-primary" type="submit" value="Submit" disabled)
+
+						input(type="hidden", id="question_items_json", value= JSON.stringify(question_items))
+						input(type="hidden", id="questionnaire_link", value=questionnaire_link)
+
+	script(type='text/javascript').
+		ITEMS.question_items = JSON.parse($('#question_items_json').val());
+		ITEMS.questionnaire_link = $('#questionnaire_link').val();
+		ITEMS.load_question_item();
+
+	script(type='text/javascript' src='static/js/questionnaire.js')

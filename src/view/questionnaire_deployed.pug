@@ -1,0 +1,25 @@
+body
+	#choose_questionnaire
+		.header
+			h1 The questionnaire is now live!
+
+		.container
+			.content
+				h5 An invitation email was sent to the following recipients:
+
+				.row
+					table
+						tbody
+
+				input(type="hidden", id="recipients", value=recipients)
+
+	script(type='text/javascript').
+		recipients = JSON.parse($('#recipients').val());
+		$.each(recipients, function(ix, value){
+			$('tbody').append('<tr></tr>');
+			$('tbody tr').append('<td>'+value.first_name+'</td>');
+			$('tbody tr').append('<td>'+value.last_name+'</td>');
+			$('tbody tr').append('<td>'+value.email+'</td>');
+			$('tbody').append('</tbody></table>');
+			//console.log(value)
+		});

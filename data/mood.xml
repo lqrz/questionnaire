@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questionnaire>
+	<title>Mood of the day</title>
+	<description>This is about today's mood.</description>
+	<item>
+		<question>How are you?</question>
+		<description>Please indicate how you are feeling today.</description>
+		<answer>Bad</answer>
+		<answer>Well</answer>
+		<answer>Very good</answer>
+		<answer>Excellent</answer>
+	</item>
+	<item>
+		<question>What are you going to do today?</question>
+		<answer>Go to the gym</answer>
+		<answer>Go to work</answer>
+		<answer>Lie in bed</answer>
+	</item>
+	<item>
+		<question>Anything else you wanna add?</question>
+		<answer></answer>
+	</item>
+	<recipients>
+		<person>
+			<first_name>Lautaro</first_name>
+			<last_name>Quiroz</last_name>
+			<email>lautaro.quiroz@gmail.com</email>
+		</person>
+	</recipients>
+</questionnaire>
