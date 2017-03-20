@@ -12,6 +12,8 @@ const main_router = require('./routes')
 // instantiate express
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 // use bodyParser
 app.use(bodyParser.json({limit: '50mb'}));
 
@@ -36,7 +38,7 @@ app.use('/static', express.static(__dirname + '/../view/static/'));
 app.use('/', main_router)
 
 // listen
-var server = app.listen(3000, function () {
+var server = app.listen(port, function () {
    var host = server.address().address;
    var port = server.address().port;
    console.log('App listening at http://%s:%s', host, port);
