@@ -18,7 +18,7 @@ router.post('/upload_questionnaire', function(req, res){
 
 router.get('/questionnaire*', function(req, res){
 	req.body.questionnaire_link = req.query.questionnaire_link;
-	console.log(req.query.questionnaire_link)
+	
 	if (req.query.questionnaire_link==undefined || req.query.questionnaire_link=='') res.render('404');
 	console.log('Accessing through email link')
 	Questionnaire_handler.answer_questionnaire(req, res);

@@ -37,4 +37,13 @@ $(document).ready(function(){
 		ITEMS.load_question_item();
 	});
 
+	$('.button-primary').css('width', $('.button').css('width'));
+	const title_height = parseInt($('h1').css('height').replace(/px/,""));
+	const image_height = title_height*.7
+
+	$('.title img')
+				.css('height', image_height)
+				.css('padding-top', title_height*.5-image_height*.5)
+				.show();
+
 });

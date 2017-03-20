@@ -2,8 +2,9 @@ body{
 	margin:	2em;
 }
 
-.content{
-	margin-top: 4em;
+.header{
+	border-bottom: 1px solid #eee;
+	margin-bottom: 5em;
 }
 
 #file_chooser{
@@ -26,10 +27,54 @@ body{
 	display: none;
 }
 
+td {
+	border-bottom: 0px;
+}
+
 tr:hover{
 	background-color: rgba(247, 247, 247, 0.8);
 }
 
 input[type="radio"]{
 	margin-right: 1em;
+}
+
+.content {
+    display: block;
+    text-align: center;
+}
+
+.center{
+	margin: 0 auto;
+	display: block;
+	text-align: left;
+	max-width: 30em;
+}
+
+.button{
+	margin-right: 2em;
+}
+
+table{
+	width: 100%;
+}
+
+.title h1{
+	margin-left: .25em;
+	float: left;
+}
+
+.title img{
+	float: left;
+}
+
+.cls{
+	clear: both;
+}
+
+.question{
+	text-transform: uppercase;
+	font-weight: bold;
+	letter-spacing: .25em;
+	margin-bottom: 0px;
 }

@@ -8,9 +8,13 @@ const adler32 = require('adler-32');
 const connectionString = process.env.DATABASE_URL;
 const schema_name = 'standalone_webapp';
 
-if (connectionString==undefined){
-	throw new Error('Missing DATABASE_URL env variable');
+function check_environment_variables(){
+	if (connectionString==undefined){
+		throw new Error('Missing DATABASE_URL env variable');
+	};
 };
+
+check_environment_variables();
 
 Db_handler = {}
 

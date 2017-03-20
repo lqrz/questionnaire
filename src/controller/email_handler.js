@@ -4,6 +4,27 @@
 
 const nodemailer = require('nodemailer');
 
+const webapp_endpoint = process.env.WEBAPP_ENDPOINT;
+const email_account = process.env.EMAIL_ACCOUNT;
+const email_password = process.env.EMAIL_PASSWORD_BASE64;
+
+function check_environment_variables(){
+	if (webapp_endpoint==undefined){
+		throw new Error('Missing WEBAPP_ENDPOINT env variable.');
+	};
+
+	if (email_account==undefined){
+		throw new Error('Missing EMAIL_ACCOUNT env variable.');
+	};
+
+	if (email_password==undefined){
+		throw new Error('Missing EMAIL_PASSWORD_BASE64 env variable.');
+	};
+
+};
+
+check_environment_variables();
+
 Email_handler = {}
 
 Email_handler.send_invitations = function(questionnaire_hash, questionnaire_title, recipients){
@@ -11,7 +32,7 @@ Email_handler.send_invitations = function(questionnaire_hash, questionnaire_titl
 	for (var i=0, len=recipients.length; i<len; i++){
 		const rec = recipients[i]
 
-		const link = process.env.WEBAPP_ENDPOINT.replace(/\/$/, '')+'?questionnaire_link='+questionnaire_hash+'QB'+rec['hash'];
+		const link = webapp_endpoint.replace(/\/$/, '')+'?questionnaire_link='+questionnaire_hash+'QB'+rec['hash'];
 
 		send_invitation_by_mail(rec['email'], rec['first_name'], link, questionnaire_title)
 
@@ -26,8 +47,8 @@ function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, qu
 		host: 'outlook.office365.com',
 		port: '587',
 		auth: {
-			user: process.env.EMAIL_ACCOUNT,
-			pass: Buffer.from(process.env.EMAIL_PASSWORD_BASE64, 'base64')
+			user: email_account,
+			pass: Buffer.from(email_password, 'base64')
 		}
 	};
 	

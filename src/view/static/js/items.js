@@ -32,7 +32,10 @@
 		},
 
 		attach_radio_button_event: function(){
-			$('input[type="radio"]').click(function(){
+			$('input[type="radio"]').click(function(e){
+
+				e.stopImmediatePropagation();
+				
 				$('#complete_questionnaire_next').removeAttr('disabled');
 
 				if (ITEMS.question_item_ix == ITEMS.question_items.length){
@@ -51,6 +54,7 @@
 
 		attach_text_area_event: function(){
 			$('textarea').on('change keyup paste', function() {
+				
 				if ($(this).val()==''){
 					$('#complete_questionnaire_submit').attr('disabled', true);
 				}else{
@@ -87,6 +91,8 @@
 		const qi = ITEMS.question_items[ITEMS.question_item_ix];
 
 		$('#complete_questionnaire .question').text(qi['question']);
+		
+		$('#complete_questionnaire .description').text((qi['question_description']==null) ? '' : qi['question_description']);
 
 		if (qi['answer'].length == 1 && qi['answer'][0]==''){
 

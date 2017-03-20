@@ -19,21 +19,29 @@ html
 body
 	#complete_questionnaire
 		.header
-			h1=title
+			.title
+				//div(class="one column")
+				//	img(src="static/img/quiz.png" style="display:none;")
+				//div(class="eleven columns text")
+				img(src="static/img/quiz.png" style="display:none;")
+				h1=title
+				.cls
 			h5=description
 
 		.container
 			.content
-				.row
-					div(class="six columns")
-						h5.question
-						.answer
-						input(id="complete_questionnaire_previous" class="button" type="submit" value="Previous")
-						input(id="complete_questionnaire_next" class="button-primary" type="submit" value="Next" disabled)
-						input(id="complete_questionnaire_submit" class="button-primary" type="submit" value="Submit" disabled)
+				//.row
+					//div(class="six columns")
+				.center
+					h5.question
+					h6.description
+					.answer
+					input(id="complete_questionnaire_previous" class="button" type="submit" value="Previous")
+					input(id="complete_questionnaire_next" class="button-primary" type="submit" value="Next" disabled)
+					input(id="complete_questionnaire_submit" class="button-primary" type="submit" value="Submit" disabled)
 
-						input(type="hidden", id="question_items_json", value= JSON.stringify(question_items))
-						input(type="hidden", id="questionnaire_link", value=questionnaire_link)
+					input(type="hidden", id="question_items_json", value= JSON.stringify(question_items))
+					input(type="hidden", id="questionnaire_link", value=questionnaire_link)
 
 	script(type='text/javascript').
 		ITEMS.question_items = JSON.parse($('#question_items_json').val());

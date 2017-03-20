@@ -100,6 +100,7 @@ Questionnaire_handler.answer_questionnaire = function(req, res){
 				question_items[questionnaire_rows[i].question_id] = {
 														question_id: questionnaire_rows[i].question_id,
 														question: questionnaire_rows[i].question_text,
+														question_description: questionnaire_rows[i].question_description,
 														answer: [questionnaire_rows[i].possible_answer_text]
 													}
 			}
