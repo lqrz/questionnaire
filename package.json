@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/controller/main.js",
   "scripts": {
+    "start": "node src/controller/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "l.quiroz",
