@@ -5,6 +5,7 @@
 const nodemailer = require('nodemailer');
 
 const webapp_endpoint = process.env.WEBAPP_ENDPOINT;
+const email_service = process.env.EMAIL_SERVICE;
 const email_account = process.env.EMAIL_ACCOUNT;
 const email_password = process.env.EMAIL_PASSWORD_BASE64;
 
@@ -19,6 +20,10 @@ function check_environment_variables(){
 
 	if (email_password==undefined){
 		throw new Error('Missing EMAIL_PASSWORD_BASE64 env variable.');
+	};
+
+	if (email_service==undefined){
+		throw new Error('Missing EMAIL_SERVICE env variable.');
 	};
 
 };
@@ -43,16 +48,28 @@ Email_handler.send_invitations = function(questionnaire_hash, questionnaire_titl
 //TODO: configure and test the SMTP
 function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, questionnaire_name){
 
-	const config = {
-		host: 'outlook.office365.com',
-		port: '587',
-		auth: {
-			user: email_account,
-			pass: Buffer.from(email_password, 'base64')
-		}
-	};
-	
-	// create reusable transporter object using the default SMTP transport
+	if (email_service=='mailgun'){
+		const config = {
+			service:  'Mailgun',
+			auth: {
+				user: email_account,
+				pass: Buffer.from(email_password, 'base64')
+			}
+		};
+	}else if (email_service=='outlook'){
+		const config = {
+			host: 'outlook.office365.com',
+			port: '587',
+			auth: {
+				user: email_account,
+				pass: Buffer.from(email_password, 'base64')
+			}
+		};
+	}else{
+		throw new Error('Invalid EMAIL_SERVICE env variable value: '+email_service+' ("mailgun" or "outlook")');
+	};	
+
+	// // create reusable transporter object using the default SMTP transport
 	let transporter = nodemailer.createTransport(config);
 
 	const html_body = '<html>'+
