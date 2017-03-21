@@ -48,8 +48,10 @@ Email_handler.send_invitations = function(questionnaire_hash, questionnaire_titl
 //TODO: configure and test the SMTP
 function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, questionnaire_name){
 
+	var config = null;
+
 	if (email_service=='mailgun'){
-		const config = {
+		config = {
 			service:  'Mailgun',
 			auth: {
 				user: email_account,
@@ -57,7 +59,7 @@ function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, qu
 			}
 		};
 	}else if (email_service=='outlook'){
-		const config = {
+		config = {
 			host: 'outlook.office365.com',
 			port: '587',
 			auth: {
@@ -65,9 +67,19 @@ function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, qu
 				pass: Buffer.from(email_password, 'base64')
 			}
 		};
+	}else if (email_service=='gmail'){
+		config = {
+			service: 'Gmail',
+			auth: {
+				user: email_account,
+				pass: Buffer.from(email_password, 'base64')
+			}
+		}
 	}else{
 		throw new Error('Invalid EMAIL_SERVICE env variable value: '+email_service+' ("mailgun" or "outlook")');
-	};	
+	};
+
+	console.log(config)
 
 	// // create reusable transporter object using the default SMTP transport
 	let transporter = nodemailer.createTransport(config);
