@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 	$('#custom_upload_button').on('click', function (){
+		$('#custom_upload_button').attr('disabled', true);
 		$('#file_chooser').click();
 	});
 
