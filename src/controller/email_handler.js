@@ -4,16 +4,11 @@
 
 const nodemailer = require('nodemailer');
 
-const webapp_endpoint = process.env.WEBAPP_ENDPOINT;
 const email_service = process.env.EMAIL_SERVICE;
 const email_account = process.env.EMAIL_ACCOUNT;
 const email_password = process.env.EMAIL_PASSWORD_BASE64;
 
 function check_environment_variables(){
-	if (webapp_endpoint==undefined){
-		throw new Error('Missing WEBAPP_ENDPOINT env variable.');
-	};
-
 	if (email_account==undefined){
 		throw new Error('Missing EMAIL_ACCOUNT env variable.');
 	};
@@ -32,12 +27,12 @@ check_environment_variables();
 
 Email_handler = {}
 
-Email_handler.send_invitations = function(questionnaire_hash, questionnaire_title, recipients){
+Email_handler.send_invitations = function(webapp_url, questionnaire_hash, questionnaire_title, recipients){
 
 	for (var i=0, len=recipients.length; i<len; i++){
 		const rec = recipients[i]
 
-		const link = webapp_endpoint.replace(/\/$/, '')+'?questionnaire_link='+questionnaire_hash+'QB'+rec['hash'];
+		const link = webapp_url+'/questionnaire?questionnaire_link='+questionnaire_hash+'QB'+rec['hash'];
 
 		send_invitation_by_mail(rec['email'], rec['first_name'], link, questionnaire_title)
 
@@ -78,8 +73,6 @@ function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, qu
 	}else{
 		throw new Error('Invalid EMAIL_SERVICE env variable value: '+email_service+' ("mailgun" or "outlook")');
 	};
-
-	console.log(config)
 
 	// // create reusable transporter object using the default SMTP transport
 	let transporter = nodemailer.createTransport(config);

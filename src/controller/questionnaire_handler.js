@@ -14,6 +14,8 @@ Questionnaire_handler = {}
 
 Questionnaire_handler.upload_questionnaire = function (req, res){
 
+	const webapp_url = req.headers.origin;
+
 	// get the FormData object from the client
 	var form = new formidable.IncomingForm();
 
@@ -69,7 +71,7 @@ Questionnaire_handler.upload_questionnaire = function (req, res){
 
 						// send email to recipients
 						console.log('Sending email invitations')
-						Email_handler.send_invitations(questionnaire_hash, title, users);
+						Email_handler.send_invitations(webapp_url, questionnaire_hash, title, users);
 
 						res.render('questionnaire_deployed', {recipients: users});
 					});
