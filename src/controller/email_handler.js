@@ -89,7 +89,7 @@ function send_invitation_by_mail(to_addr, user_firstname, questionnaire_link, qu
 	let mailOptions = {
 		from: config.auth.user, // sender address
 		to: [to_addr], // list of receivers
-		subject: 'Please complete this questionnaire', // Subject line
+		subject: '[Questionnaire standalone] Please complete this questionnaire', // Subject line
 		html: html_body // html body
 	};
 
