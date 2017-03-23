@@ -6,6 +6,8 @@ $(document).ready(function(){
 	});
 
 	$('#complete_questionnaire_submit').click(function(){
+		
+		$('#complete_questionnaire_submit').attr('disabled', true);
 
 		ITEMS.add_answer();
 

@@ -54,11 +54,13 @@
 
 		attach_text_area_event: function(){
 			$('textarea').on('change keyup paste', function() {
-				
+
 				if ($(this).val()==''){
 					$('#complete_questionnaire_submit').attr('disabled', true);
+					$('#complete_questionnaire_next').attr('disabled', true);
 				}else{
 					$('#complete_questionnaire_submit').removeAttr('disabled');
+					$('#complete_questionnaire_next').removeAttr('disabled');
 				};
 			});
 		},
